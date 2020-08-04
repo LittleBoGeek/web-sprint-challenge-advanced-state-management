@@ -15,13 +15,14 @@ function App (props)  {
   })
   const handleChange = (event) => {
     setFields ({
-      [event.target.name]: event.target.value,
+      ...fields,
+    [event.target.name]: event.target.value,
     })
   }
   
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.addSmurf()
+    props.addSmurf(fields)
     setFields({
       name: '',
       age:'',
@@ -35,12 +36,13 @@ function App (props)  {
 <form>
 
 <input 
-name="Name"
+name="name"
 onChange={handleChange}
 type="text"
 value={fields.name}
-placeholder="Name"
+placeholder="name"
 />
+
 <input 
 name="age"
 onChange={handleChange}
@@ -54,8 +56,9 @@ name="height"
 onChange={handleChange}
 type="text"
 value={fields.height}
-placeholder="Height"
+placeholder="height"
 />
+
 
 
 <button onClick={handleSubmit}>  Add Smurf </button>
